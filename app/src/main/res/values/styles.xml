@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Card Styles -->
+    <style name="Widget.SpendWise.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="android:layout_margin">@dimen/spacing_sm</item>
+    </style>
+
+    <style name="Widget.SpendWise.Card.Filled" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="android:layout_margin">@dimen/spacing_sm</item>
+    </style>
+
+    <style name="Widget.SpendWise.Card.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="android:layout_margin">@dimen/spacing_sm</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Widget.SpendWise.Button" parent="Widget.Material3.Button">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="Widget.SpendWise.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="Widget.SpendWise.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:layout_height">@dimen/button_height</item>
+    </style>
+
+    <!-- Text Input Layout Styles -->
+    <style name="Widget.SpendWise.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">@dimen/text_field_height</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+    </style>
+
+    <style name="Widget.SpendWise.TextInputLayout.Filled" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="android:layout_height">@dimen/text_field_height</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+    </style>
+
+    <!-- FAB Styles -->
+    <style name="Widget.SpendWise.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="android:layout_width">@dimen/fab_size</item>
+        <item name="android:layout_height">@dimen/fab_size</item>
+    </style>
+
+    <!-- Toolbar Styles -->
+    <style name="Widget.SpendWise.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="titleTextAppearance">@style/TextAppearance.SpendWise.Headline6</item>
+    </style>
+
+    <!-- Base Text Appearance Styles -->
+    <style name="TextAppearance.SpendWise" parent="TextAppearance.Material3.BodyLarge">
+        <!-- Base style for all SpendWise text appearances -->
+    </style>
+
+    <style name="TextAppearance.SpendWise.Headline1" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">@dimen/text_size_xxl</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Headline6" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">@dimen/text_size_xl</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Body1" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">@dimen/text_size_md</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Body2" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">@dimen/text_size_sm</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">@dimen/text_size_xs</item>
+    </style>
+
+    <!-- Dashboard Base Text Styles -->
+    <style name="TextAppearance.SpendWise.Dashboard" parent="TextAppearance.SpendWise">
+        <!-- Base dashboard text appearance -->
+    </style>
+
+    <style name="TextAppearance.SpendWise.Dashboard.Amount" parent="TextAppearance.SpendWise.Dashboard">
+        <item name="android:textSize">@dimen/text_size_lg</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Dashboard.Label" parent="TextAppearance.SpendWise.Dashboard">
+        <item name="android:textSize">@dimen/text_size_sm</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- Income/Expense Color Styles -->
+    <style name="TextAppearance.SpendWise.Income" parent="TextAppearance.SpendWise">
+        <item name="android:textColor">@color/income_green</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Expense" parent="TextAppearance.SpendWise">
+        <item name="android:textColor">@color/expense_red</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.SpendWise.Savings" parent="TextAppearance.SpendWise">
+        <item name="android:textColor">@color/savings_blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Loading Indicator Style -->
+    <style name="Widget.SpendWise.ProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorColor">?attr/colorPrimary</item>
+        <item name="trackColor">?attr/colorSurfaceVariant</item>
+    </style>
+
+    <!-- Dialog Styles -->
+    <style name="ThemeOverlay.SpendWise.Dialog" parent="ThemeOverlay.Material3.Dialog">
+        <item name="dialogCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+
+    <!-- BottomSheet Style -->
+    <style name="ThemeOverlay.SpendWise.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.SpendWise.BottomSheet</item>
+    </style>
+
+    <style name="Widget.SpendWise.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.SpendWise.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.SpendWise.BottomSheet" parent="">
+        <item name="cornerSizeTopLeft">@dimen/card_corner_radius</item>
+        <item name="cornerSizeTopRight">@dimen/card_corner_radius</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- Tab Layout Style -->
+    <style name="Widget.SpendWise.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIndicatorColor">?attr/colorPrimary</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimary</item>
+        <item name="tabTextColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- Chip Styles -->
+    <style name="Widget.SpendWise.Chip.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">?attr/colorSurfaceVariant</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.SpendWise.Chip.Choice" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">?attr/colorPrimaryContainer</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+    </style>
+
+    <!-- Switch Style -->
+    <style name="Widget.SpendWise.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">?attr/colorPrimary</item>
+        <item name="trackTint">?attr/colorPrimaryContainer</item>
+    </style>
+
+    <!-- Divider Style -->
+    <style name="Widget.SpendWise.Divider" parent="Widget.Material3.MaterialDivider">
+        <item name="dividerColor">?attr/colorOutlineVariant</item>
+        <item name="dividerThickness">1dp</item>
+    </style>
+
+    <!-- List Item Styles -->
+    <style name="Widget.SpendWise.ListItem" parent="">
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:padding">@dimen/list_item_padding_horizontal</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Image Styles -->
+    <style name="Widget.SpendWise.ImageView.Rounded" parent="">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+</resources>

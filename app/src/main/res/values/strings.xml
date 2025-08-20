@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SpendWise</string>
+
+    <!-- Splash Screen Strings -->
+    <string name="app_tagline">Smart Expense Tracking</string>
+    <string name="version_info">Version 1.0.0</string>
+
+    <!-- Loading States -->
+    <string name="initializing">Initializing...</string>
+    <string name="loading_data">Loading your data...</string>
+</resources>
