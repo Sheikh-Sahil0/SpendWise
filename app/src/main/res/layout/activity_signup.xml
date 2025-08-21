@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:background="?attr/android:colorBackground"
+    tools:context=".ui.activities.SignupActivity">
+
+    <!-- Background Gradient Views -->
+    <View
+        android:id="@+id/backgroundGradient1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/gradient_circle_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="-50dp" />
+
+    <View
+        android:id="@+id/backgroundGradient2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/gradient_circle_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="-30dp"
+        android:layout_marginBottom="-30dp" />
+
+    <!-- Floating Particles Container -->
+    <FrameLayout
+        android:id="@+id/particlesContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Small Particles - Layer 1 -->
+        <ImageView
+            android:id="@+id/particle1"
+            android:layout_width="@dimen/particle_size_lg"
+            android:layout_height="@dimen/particle_size_lg"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="30dp" />
+
+        <ImageView
+            android:id="@+id/particle2"
+            android:layout_width="@dimen/particle_size_md"
+            android:layout_height="@dimen/particle_size_md"
+            android:src="@drawable/ic_particle"
+            app:tint="?attr/colorOnPrimary"
+            android:alpha="0.4"
+            android:layout_gravity="end"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="50dp" />
+
+        <ImageView
+            android:id="@+id/particle3"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.7"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="10dp" />
+
+        <ImageView
+            android:id="@+id/particle4"
+            android:layout_width="@dimen/particle_size_lg"
+            android:layout_height="@dimen/particle_size_lg"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.7"
+            android:layout_gravity="end"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="10dp" />
+
+        <ImageView
+            android:id="@+id/particle5"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.4"
+            android:layout_marginTop="350dp"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:id="@+id/particle6"
+            android:layout_width="@dimen/particle_size_md"
+            android:layout_height="@dimen/particle_size_md"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.8"
+            android:layout_gravity="end"
+            android:layout_marginTop="420dp"
+            android:layout_marginEnd="70dp" />
+
+        <ImageView
+            android:id="@+id/particle7"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="40dp" />
+
+        <ImageView
+            android:id="@+id/particle8"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="60dp" />
+
+        <!-- Additional Small Particles - Layer 2 -->
+        <ImageView
+            android:id="@+id/particle9"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.5"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="120dp" />
+
+        <ImageView
+            android:id="@+id/particle10"
+            android:layout_width="@dimen/particle_size_xs"
+            android:layout_height="@dimen/particle_size_xs"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.3"
+            android:layout_gravity="end"
+            android:layout_marginTop="320dp"
+            android:layout_marginEnd="15dp" />
+
+        <ImageView
+            android:id="@+id/particle11"
+            android:layout_width="@dimen/particle_size_xs"
+            android:layout_height="@dimen/particle_size_xs"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_marginTop="270dp"
+            android:layout_marginStart="12dp" />
+
+        <ImageView
+            android:id="@+id/particle12"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.4"
+            android:layout_gravity="end"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="5dp" />
+
+        <!-- Extra Small Particles - Layer 3 -->
+        <ImageView
+            android:id="@+id/particle13"
+            android:layout_width="@dimen/particle_size_md"
+            android:layout_height="@dimen/particle_size_md"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.7"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="190dp" />
+
+        <ImageView
+            android:id="@+id/particle14"
+            android:layout_width="@dimen/particle_size_xs"
+            android:layout_height="@dimen/particle_size_xs"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.5"
+            android:layout_gravity="end"
+            android:layout_marginTop="220dp"
+            android:layout_marginEnd="20dp" />
+
+        <ImageView
+            android:id="@+id/particle15"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="50dp" />
+
+        <ImageView
+            android:id="@+id/particle16"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_gravity="end"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Bottom Area Particles -->
+        <ImageView
+            android:id="@+id/particle17"
+            android:layout_width="@dimen/particle_size_xs"
+            android:layout_height="@dimen/particle_size_xs"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.5"
+            android:layout_gravity="bottom|start"
+            android:layout_marginBottom="180dp"
+            android:layout_marginStart="9dp" />
+
+        <ImageView
+            android:id="@+id/particle18"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.7"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="80dp" />
+
+        <ImageView
+            android:id="@+id/particle19"
+            android:layout_width="@dimen/particle_size_xs"
+            android:layout_height="@dimen/particle_size_xs"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.4"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="30dp" />
+
+        <ImageView
+            android:id="@+id/particle20"
+            android:layout_width="@dimen/particle_size_sm"
+            android:layout_height="@dimen/particle_size_sm"
+            android:src="@drawable/ic_particle"
+            android:alpha="0.6"
+            android:layout_gravity="bottom|start"
+            android:layout_marginBottom="250dp"
+            android:layout_marginStart="10dp" />
+
+    </FrameLayout>
+
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="60dp"
+            android:paddingBottom="32dp">
+
+            <!-- Logo -->
+            <TextView
+                android:id="@+id/logoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_size_xxl"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnBackground"
+                android:layout_marginTop="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/subtitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create_an_account_and_handle_your_expense_smartly"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="?attr/colorOnBackground"
+                android:layout_marginTop="@dimen/spacing_xs"
+                app:layout_constraintTop_toBottomOf="@+id/logoText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <!-- Main Card Container -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/registerCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_lg"
+                app:cardCornerRadius="@dimen/container_corner_radius_large"
+                app:cardElevation="@dimen/elevation_high"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:layout_constraintTop_toBottomOf="@id/subtitleText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/spacing_xl">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_xl">
+
+                    <!-- Username Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/usernameInputLayout"
+                        style="@style/Widget.SpendWise.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:hint="@string/username"
+                        app:boxStrokeColor="?attr/colorPrimary"
+                        app:hintTextColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/usernameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Display Name Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/displayNameInputLayout"
+                        style="@style/Widget.SpendWise.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:hint="@string/display_name"
+                        app:boxStrokeColor="?attr/colorPrimary"
+                        app:hintTextColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintTop_toBottomOf="@id/usernameInputLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/displayNameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Email Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailInputLayout"
+                        style="@style/Widget.SpendWise.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:hint="@string/email"
+                        app:boxStrokeColor="?attr/colorPrimary"
+                        app:hintTextColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintTop_toBottomOf="@id/displayNameInputLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Password Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/passwordInputLayout"
+                        style="@style/Widget.SpendWise.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:hint="@string/password"
+                        app:boxStrokeColor="?attr/colorPrimary"
+                        app:hintTextColor="?attr/colorOnSurfaceVariant"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="?attr/colorPrimary"
+                        app:layout_constraintTop_toBottomOf="@id/emailInputLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Confirm Password Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/confirmPasswordInputLayout"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:hint="@string/confirm_password"
+                        app:boxStrokeColor="?attr/colorPrimary"
+                        app:hintTextColor="?attr/colorOnSurfaceVariant"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="?attr/colorPrimary"
+                        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/confirmPasswordEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Sign Up Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/signUpButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_height_large"
+                        android:text="@string/sign_up"
+                        android:textSize="@dimen/text_size_md"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnPrimary"
+                        app:backgroundTint="?attr/colorPrimary"
+                        app:cornerRadius="@dimen/container_corner_radius_large"
+                        android:layout_marginTop="@dimen/spacing_lg"
+                        app:layout_constraintTop_toBottomOf="@id/confirmPasswordInputLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Login Link -->
+                    <LinearLayout
+                        android:id="@+id/loginLinkLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/spacing_lg"
+                        app:layout_constraintTop_toBottomOf="@id/signUpButton"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/already_have_an_account"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="@dimen/text_size_sm" />
+
+                        <TextView
+                            android:id="@+id/loginLinkText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_sm"
+                            android:text="@string/login"
+                            android:textColor="?attr/colorPrimary"
+                            android:textSize="@dimen/text_size_sm"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

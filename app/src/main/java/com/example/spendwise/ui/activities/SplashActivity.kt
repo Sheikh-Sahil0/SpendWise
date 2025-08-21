@@ -1,5 +1,3 @@
-// Location: app/src/main/java/com/yourname/spendwise/ui/activities/SplashActivity.kt
-
 package com.example.spendwise.ui.activities
 
 import android.animation.AnimatorSet
@@ -12,6 +10,7 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import com.example.spendwise.MainActivity
@@ -192,18 +191,25 @@ class SplashActivity : AppCompatActivity() {
         // Show loading indicator
         binding.loadingIndicator.visibility = View.VISIBLE
 
-        // Fade out animations
-        val fadeOut = ObjectAnimator.ofFloat(binding.root, "alpha", 1f, 0f).apply {
-            duration = 300
+        // Modern transition animation - Scale and fade out with overshoot
+        val scaleX = ObjectAnimator.ofFloat(binding.root, "scaleX", 1f, 0.9f)
+        val scaleY = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 0.9f)
+        val fadeOut = ObjectAnimator.ofFloat(binding.root, "alpha", 1f, 0f)
+        val translateY = ObjectAnimator.ofFloat(binding.root, "translationY", 0f, -50f)
+
+        AnimatorSet().apply {
+            playTogether(scaleX, scaleY, fadeOut, translateY)
+            duration = 500
+            interpolator = AccelerateDecelerateInterpolator()
             doOnEnd {
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                val intent = Intent(this@SplashActivity, SignupActivity::class.java)
                 startActivity(intent)
-                overridePendingTransition(R.anim.fade_in_scale, android.R.anim.fade_out)
+                // Custom transition animations
+                overridePendingTransition(R.anim.slide_in_up_scale, R.anim.slide_out_up_fade)
                 finish()
             }
+            start()
         }
-
-        fadeOut.start()
     }
 
     override fun onBackPressed() {

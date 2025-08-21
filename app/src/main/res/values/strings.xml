@@ -8,4 +8,13 @@
     <!-- Loading States -->
     <string name="initializing">Initializing...</string>
     <string name="loading_data">Loading your data...</string>
+    <string name="username">Username</string>
+    <string name="display_name">Display Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">LOGIN</string>
+    <string name="create_an_account_and_handle_your_expense_smartly">Create an account and handle your expense smartly</string>
 </resources>

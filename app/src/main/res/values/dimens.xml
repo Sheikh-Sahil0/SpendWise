@@ -7,60 +7,214 @@
     <dimen name="spacing_lg">24dp</dimen>
     <dimen name="spacing_xl">32dp</dimen>
     <dimen name="spacing_xxl">48dp</dimen>
+    <dimen name="spacing_xxxl">64dp</dimen>
 
     <!-- Text Sizes -->
     <dimen name="text_size_xs">12sp</dimen>
-    <dimen name="text_size_xl">24sp</dimen>
-    <dimen name="text_size_xxl">32sp</dimen>
     <dimen name="text_size_sm">14sp</dimen>
     <dimen name="text_size_md">16sp</dimen>
     <dimen name="text_size_lg">18sp</dimen>
+    <dimen name="text_size_xl">24sp</dimen>
+    <dimen name="text_size_xxl">32sp</dimen>
+    <dimen name="text_size_xxxl">40sp</dimen>
+
+    <!-- Material 3 Typography Scale -->
+    <dimen name="text_display_large">57sp</dimen>
+    <dimen name="text_display_medium">45sp</dimen>
+    <dimen name="text_display_small">36sp</dimen>
+    <dimen name="text_headline_large">32sp</dimen>
+    <dimen name="text_headline_medium">28sp</dimen>
+    <dimen name="text_headline_small">24sp</dimen>
+    <dimen name="text_title_large">22sp</dimen>
+    <dimen name="text_title_medium">16sp</dimen>
+    <dimen name="text_title_small">14sp</dimen>
+    <dimen name="text_label_large">14sp</dimen>
+    <dimen name="text_label_medium">12sp</dimen>
+    <dimen name="text_label_small">11sp</dimen>
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_body_medium">14sp</dimen>
+    <dimen name="text_body_small">12sp</dimen>
 
     <!-- Component Heights (Material 3 Standards) -->
     <dimen name="button_height">40dp</dimen>
     <dimen name="button_height_large">48dp</dimen>
+    <dimen name="button_height_small">32dp</dimen>
     <dimen name="text_field_height">56dp</dimen>
+    <dimen name="text_field_height_dense">48dp</dimen>
     <dimen name="toolbar_height">64dp</dimen>
     <dimen name="app_bar_height">64dp</dimen>
+    <dimen name="app_bar_height_large">96dp</dimen>
     <dimen name="bottom_navigation_height">80dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="chip_height">32dp</dimen>
+    <dimen name="switch_height">20dp</dimen>
+    <dimen name="slider_height">20dp</dimen>
+    <dimen name="progress_bar_height">4dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+
+    <!-- Floating Action Button -->
     <dimen name="fab_size">56dp</dimen>
     <dimen name="fab_size_small">40dp</dimen>
+    <dimen name="fab_size_large">96dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
     <!-- Card and Container Dimensions -->
     <dimen name="card_corner_radius">12dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
     <dimen name="container_corner_radius">16dp</dimen>
+    <dimen name="container_corner_radius_large">24dp</dimen>
+    <dimen name="container_corner_radius_small">8dp</dimen>
+
+    <!-- Border and Stroke Widths -->
+    <dimen name="border_width_thin">1dp</dimen>
+    <dimen name="border_width_medium">2dp</dimen>
+    <dimen name="border_width_thick">4dp</dimen>
+    <dimen name="stroke_width">2dp</dimen>
 
     <!-- Mobile Portrait Specific Dimensions -->
     <dimen name="dashboard_card_height">120dp</dimen>
+    <dimen name="dashboard_card_width">150dp</dimen>
     <dimen name="chart_height_small">200dp</dimen>
     <dimen name="chart_height_medium">250dp</dimen>
     <dimen name="chart_height_large">300dp</dimen>
+    <dimen name="image_height_small">100dp</dimen>
+    <dimen name="image_height_medium">200dp</dimen>
+    <dimen name="image_height_large">300dp</dimen>
 
     <!-- Profile and Avatar -->
     <dimen name="profile_avatar_size">72dp</dimen>
+    <dimen name="avatar_size_xs">24dp</dimen>
     <dimen name="avatar_size_small">32dp</dimen>
     <dimen name="avatar_size_medium">48dp</dimen>
+    <dimen name="avatar_size_large">64dp</dimen>
+    <dimen name="avatar_size_xl">96dp</dimen>
 
     <!-- List Items -->
     <dimen name="list_item_height">72dp</dimen>
     <dimen name="list_item_height_small">56dp</dimen>
+    <dimen name="list_item_height_dense">48dp</dimen>
     <dimen name="list_item_padding_horizontal">16dp</dimen>
+    <dimen name="list_item_padding_vertical">8dp</dimen>
 
     <!-- Input Fields -->
     <dimen name="input_corner_radius">8dp</dimen>
     <dimen name="input_padding_horizontal">16dp</dimen>
+    <dimen name="input_padding_vertical">12dp</dimen>
+    <dimen name="input_margin_bottom">16dp</dimen>
 
     <!-- Screen Margins and Paddings -->
     <dimen name="screen_horizontal_margin">16dp</dimen>
     <dimen name="screen_vertical_margin">16dp</dimen>
     <dimen name="content_padding">16dp</dimen>
+    <dimen name="content_padding_large">24dp</dimen>
+    <dimen name="content_padding_small">8dp</dimen>
+    <dimen name="section_padding">32dp</dimen>
 
     <!-- Icon Sizes -->
+    <dimen name="icon_size_xs">16dp</dimen>
     <dimen name="icon_size_small">18dp</dimen>
     <dimen name="icon_size_medium">24dp</dimen>
     <dimen name="icon_size_large">32dp</dimen>
+    <dimen name="icon_size_xl">48dp</dimen>
+    <dimen name="icon_size_xxl">64dp</dimen>
+
+    <!-- Navigation Drawer -->
+    <dimen name="drawer_width">280dp</dimen>
+    <dimen name="drawer_header_height">160dp</dimen>
+    <dimen name="drawer_item_height">48dp</dimen>
+
+    <!-- Dialog Dimensions -->
+    <dimen name="dialog_corner_radius">16dp</dimen>
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_button_padding">8dp</dimen>
+    <dimen name="dialog_min_width">280dp</dimen>
+    <dimen name="dialog_max_width">560dp</dimen>
+
+    <!-- Bottom Sheet -->
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="bottom_sheet_peek_height">100dp</dimen>
+    <dimen name="bottom_sheet_handle_width">32dp</dimen>
+    <dimen name="bottom_sheet_handle_height">4dp</dimen>
+
+    <!-- Snackbar -->
+    <dimen name="snackbar_height">48dp</dimen>
+    <dimen name="snackbar_height_multi_line">68dp</dimen>
+    <dimen name="snackbar_corner_radius">4dp</dimen>
+    <dimen name="snackbar_margin">8dp</dimen>
+
+    <!-- Search Bar -->
+    <dimen name="search_bar_height">56dp</dimen>
+    <dimen name="search_bar_corner_radius">28dp</dimen>
+
+    <!-- Badge -->
+    <dimen name="badge_size">16dp</dimen>
+    <dimen name="badge_size_large">20dp</dimen>
+    <dimen name="badge_corner_radius">8dp</dimen>
 
     <!-- Minimum Touch Targets -->
     <dimen name="min_touch_target">48dp</dimen>
+    <dimen name="min_touch_target_small">44dp</dimen>
+
+    <!-- Shadows and Elevations -->
+    <dimen name="elevation_none">0dp</dimen>
+    <dimen name="elevation_low">1dp</dimen>
+    <dimen name="elevation_medium">3dp</dimen>
+    <dimen name="elevation_high">6dp</dimen>
+    <dimen name="elevation_very_high">12dp</dimen>
+
+    <!-- Image Dimensions -->
+    <dimen name="thumbnail_size">80dp</dimen>
+    <dimen name="thumbnail_size_small">60dp</dimen>
+    <dimen name="thumbnail_size_large">120dp</dimen>
+    <dimen name="banner_height">200dp</dimen>
+    <dimen name="hero_image_height">250dp</dimen>
+
+    <!-- Grid Spacing -->
+    <dimen name="grid_spacing">8dp</dimen>
+    <dimen name="grid_spacing_large">16dp</dimen>
+
+    <!-- RecyclerView Item Spacing -->
+    <dimen name="recycler_item_spacing">8dp</dimen>
+    <dimen name="recycler_item_spacing_large">16dp</dimen>
+
+    <!-- Status Bar and Navigation Bar -->
+    <dimen name="status_bar_height">24dp</dimen>
+    <dimen name="navigation_bar_height">48dp</dimen>
+
+    <!-- Loading Indicators -->
+    <dimen name="progress_indicator_size">24dp</dimen>
+    <dimen name="progress_indicator_size_large">48dp</dimen>
+    <dimen name="progress_indicator_stroke_width">4dp</dimen>
+
+    <!-- Modal and Overlay -->
+    <dimen name="modal_corner_radius">20dp</dimen>
+    <dimen name="overlay_padding">32dp</dimen>
+
+    <!-- Form Elements -->
+    <dimen name="form_field_spacing">20dp</dimen>
+    <dimen name="form_section_spacing">32dp</dimen>
+    <dimen name="checkbox_size">20dp</dimen>
+    <dimen name="radio_button_size">20dp</dimen>
+
+    <!-- Accessibility -->
+    <dimen name="accessibility_focus_border">2dp</dimen>
+    <dimen name="accessibility_large_text_multiplier">1.3</dimen>
+
+    <!-- Animation and Transition -->
+    <dimen name="swipe_threshold">100dp</dimen>
+    <dimen name="scroll_threshold">50dp</dimen>
+
+    <!-- Custom App Specific (add your own based on needs) -->
+    <dimen name="feature_banner_height">160dp</dimen>
+    <dimen name="product_card_width">180dp</dimen>
+    <dimen name="product_card_height">240dp</dimen>
+    <dimen name="notification_dot_size">8dp</dimen>
+
+    <!-- Particle Sizes -->
+    <dimen name="particle_size_xs">3dp</dimen>   <!-- extra small particles -->
+    <dimen name="particle_size_sm">5dp</dimen>   <!-- small particles -->
+    <dimen name="particle_size_md">7dp</dimen>   <!-- medium particles -->
+    <dimen name="particle_size_lg">9dp</dimen>   <!-- large particles -->
+
 </resources>
