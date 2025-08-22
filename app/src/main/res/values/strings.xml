@@ -8,6 +8,8 @@
     <!-- Loading States -->
     <string name="initializing">Initializing...</string>
     <string name="loading_data">Loading your data...</string>
+
+<!--    Signup Screen Strings-->
     <string name="username">Username</string>
     <string name="display_name">Display Name</string>
     <string name="email">Email</string>
@@ -17,4 +19,8 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login">LOGIN</string>
     <string name="create_an_account_and_handle_your_expense_smartly">Create an account and handle your expense smartly</string>
+
+<!--    Login Screen Strings-->
+    <string name="welcome_back_login_to_continue">Welcome back login to continue</string>
+    <string name="dont_have_an_account">don\'t have an account</string>
 </resources>

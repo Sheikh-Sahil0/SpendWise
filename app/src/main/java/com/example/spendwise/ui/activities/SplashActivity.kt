@@ -202,7 +202,7 @@ class SplashActivity : AppCompatActivity() {
             duration = 500
             interpolator = AccelerateDecelerateInterpolator()
             doOnEnd {
-                val intent = Intent(this@SplashActivity, SignupActivity::class.java)
+                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
                 startActivity(intent)
                 // Custom transition animations
                 overridePendingTransition(R.anim.slide_in_up_scale, R.anim.slide_out_up_fade)

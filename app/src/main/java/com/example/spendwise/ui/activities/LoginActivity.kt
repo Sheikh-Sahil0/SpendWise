@@ -2,9 +2,11 @@ package com.example.spendwise.ui.activities
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
@@ -16,18 +18,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.spendwise.R
-import com.example.spendwise.databinding.ActivitySignupBinding
+import com.example.spendwise.databinding.ActivityLoginBinding
+import kotlin.random.Random
 
-class SignupActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySignupBinding
+    private lateinit var binding: ActivityLoginBinding
+    private var isFirstLaunch = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         // Initialize view binding
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -54,10 +58,10 @@ class SignupActivity : AppCompatActivity() {
         binding.logoText.translationY = -100f
         binding.subtitleText.alpha = 0f
         binding.subtitleText.translationY = -50f
-        binding.registerCard.alpha = 0f
-        binding.registerCard.translationY = 100f
-        binding.registerCard.scaleX = 0.9f
-        binding.registerCard.scaleY = 0.9f
+        binding.loginCard.alpha = 0f
+        binding.loginCard.translationY = 100f
+        binding.loginCard.scaleX = 0.9f
+        binding.loginCard.scaleY = 0.9f
 
         // Logo entrance animation
         Handler(Looper.getMainLooper()).postDelayed({
@@ -87,10 +91,10 @@ class SignupActivity : AppCompatActivity() {
 
         // Card entrance animation
         Handler(Looper.getMainLooper()).postDelayed({
-            val cardFadeIn = ObjectAnimator.ofFloat(binding.registerCard, "alpha", 0f, 1f)
-            val cardSlideUp = ObjectAnimator.ofFloat(binding.registerCard, "translationY", 100f, 0f)
-            val cardScaleX = ObjectAnimator.ofFloat(binding.registerCard, "scaleX", 0.9f, 1f)
-            val cardScaleY = ObjectAnimator.ofFloat(binding.registerCard, "scaleY", 0.9f, 1f)
+            val cardFadeIn = ObjectAnimator.ofFloat(binding.loginCard, "alpha", 0f, 1f)
+            val cardSlideUp = ObjectAnimator.ofFloat(binding.loginCard, "translationY", 100f, 0f)
+            val cardScaleX = ObjectAnimator.ofFloat(binding.loginCard, "scaleX", 0.9f, 1f)
+            val cardScaleY = ObjectAnimator.ofFloat(binding.loginCard, "scaleY", 0.9f, 1f)
 
             AnimatorSet().apply {
                 playTogether(cardFadeIn, cardSlideUp, cardScaleX, cardScaleY)
@@ -119,7 +123,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun startParticleAnimationWithExistingFiles(particle: ImageView, index: Int) {
-        // Use your existing animation files with variations
+        // Use existing animation files with variations
         when (index % 3) {
             0 -> {
                 // Use particle_float.xml animation
@@ -222,8 +226,8 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        // Sign up button click with animation
-        binding.signUpButton.setOnClickListener {
+        // Login button click with animation
+        binding.loginButton.setOnClickListener {
             // Button press animation
             val scaleDown = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.95f)
             val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.95f)
@@ -237,12 +241,12 @@ class SignupActivity : AppCompatActivity() {
                 start()
             }
 
-            // Handle sign up logic here
-            performSignUp()
+            // Handle login logic here
+            performLogin()
         }
 
-        // Login link click with subtle animation
-        binding.loginLinkText.setOnClickListener {
+        // Signup link click with animation
+        binding.signupLinkText.setOnClickListener {
             val scaleX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 1.1f, 1f)
             val scaleY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 1.1f, 1f)
 
@@ -252,45 +256,33 @@ class SignupActivity : AppCompatActivity() {
                 start()
             }
 
-            // Navigate back with reverse animation
-            finish()
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            // Navigate to signup activity
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
-
     }
 
-    private fun performSignUp() {
-        val username = binding.usernameEditText.text.toString().trim()
-        val displayName = binding.displayNameEditText.text.toString().trim()
+    private fun performLogin() {
         val email = binding.emailEditText.text.toString().trim()
         val password = binding.passwordEditText.text.toString()
-        val confirmPassword = binding.confirmPasswordEditText.text.toString()
 
-        // Add your validation and signup logic here
-        if (validateInputs(username, displayName, email, password, confirmPassword)) {
-            // Proceed with signup
+        // Add your validation and login logic here
+        if (validateInputs(email, password)) {
+            // Proceed with login
+            // Example: Navigate to MainActivity after successful login
+            // val intent = Intent(this, MainActivity::class.java)
+            // startActivity(intent)
+            // finish()
         }
     }
 
-    private fun validateInputs(username: String, displayName: String, email: String, password: String, confirmPassword: String): Boolean {
+    private fun validateInputs(email: String, password: String): Boolean {
         // Reset error states
-        binding.usernameInputLayout.error = null
-        binding.displayNameInputLayout.error = null
         binding.emailInputLayout.error = null
         binding.passwordInputLayout.error = null
-        binding.confirmPasswordInputLayout.error = null
 
         var isValid = true
-
-        if (username.isEmpty()) {
-            binding.usernameInputLayout.error = "Username is required"
-            isValid = false
-        }
-
-        if (displayName.isEmpty()) {
-            binding.displayNameInputLayout.error = "Display name is required"
-            isValid = false
-        }
 
         if (email.isEmpty()) {
             binding.emailInputLayout.error = "Email is required"
@@ -308,11 +300,6 @@ class SignupActivity : AppCompatActivity() {
             isValid = false
         }
 
-        if (confirmPassword != password) {
-            binding.confirmPasswordInputLayout.error = "Passwords do not match"
-            isValid = false
-        }
-
         return isValid
     }
 
@@ -320,5 +307,15 @@ class SignupActivity : AppCompatActivity() {
         super.onDestroy()
         // Clean up binding reference
         // binding = null (not needed for activities, only fragments)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isFirstLaunch) {
+            startEntranceAnimations()
+            startParticleAnimations()
+            startBackgroundAnimations()
+        }
+        isFirstLaunch = false
     }
 }
