@@ -426,6 +426,7 @@
                     <!-- Sign Up Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/signUpButton"
+                        style="@style/Widget.SpendWise.Button"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/button_height_large"
                         android:text="@string/sign_up"
@@ -433,7 +434,6 @@
                         android:textStyle="bold"
                         android:textColor="?attr/colorOnPrimary"
                         app:backgroundTint="?attr/colorPrimary"
-                        app:cornerRadius="@dimen/container_corner_radius_large"
                         android:layout_marginTop="@dimen/spacing_lg"
                         app:layout_constraintTop_toBottomOf="@id/confirmPasswordInputLayout"
                         app:layout_constraintStart_toStartOf="parent"

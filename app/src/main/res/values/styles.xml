@@ -24,7 +24,7 @@
     </style>
 
     <style name="Widget.SpendWise.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_height">@dimen/button_height_large</item>
         <item name="cornerRadius">12dp</item>
     </style>
 

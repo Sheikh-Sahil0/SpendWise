@@ -17,13 +17,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivityLoginBinding
+import com.example.spendwise.viewmodel.LoginViewModel
+import com.example.spendwise.viewmodel.SignupViewModel
 import kotlin.random.Random
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
     private var isFirstLaunch = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
         // Initialize view binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ViewModel
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -49,6 +57,9 @@ class LoginActivity : AppCompatActivity() {
         // Start background gradient animations
         startBackgroundAnimations()
 
+        // setup
+        setupValidationObservers()
+        setupTextWatchers()
         setupClickListeners()
     }
 
@@ -225,6 +236,17 @@ class LoginActivity : AppCompatActivity() {
         gradientScaleY2.start()
     }
 
+    // Validation
+    private fun setupValidationObservers() {
+        viewModel.emailError.observe(this) { binding.emailInputLayout.error = it }
+        viewModel.passwordError.observe(this) { binding.passwordInputLayout.error = it }
+    }
+
+    private fun setupTextWatchers() {
+        binding.emailEditText.addTextChangedListener { viewModel.validateEmail(it.toString()) }
+        binding.passwordEditText.addTextChangedListener { viewModel.validatePassword(it.toString()) }
+    }
+
     private fun setupClickListeners() {
         // Login button click with animation
         binding.loginButton.setOnClickListener {
@@ -241,8 +263,21 @@ class LoginActivity : AppCompatActivity() {
                 start()
             }
 
-            // Handle login logic here
-            performLogin()
+            // Gather inputs
+            val email = binding.emailEditText.text.toString().trim()
+            val password = binding.passwordEditText.text.toString()
+
+            // Trigger final validation in VM
+            viewModel.validateEmail(email)
+            viewModel.validatePassword(password)
+
+            // Proceed only if all errors are null
+            if (binding.emailInputLayout.error == null &&
+                binding.passwordInputLayout.error == null
+            ) {
+                // Handle login logic here
+                performLogin()
+            }
         }
 
         // Signup link click with animation

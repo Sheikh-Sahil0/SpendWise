@@ -15,41 +15,47 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivitySignupBinding
+import com.example.spendwise.viewmodel.SignupViewModel
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
+    private lateinit var viewModel: SignupViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Initialize view binding
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // ViewModel
+        viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
+
+        // Insets
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Start entrance animations
+        // Animations
         startEntranceAnimations()
-
-        // Start particle animations
         startParticleAnimations()
-
-        // Start background gradient animations
         startBackgroundAnimations()
 
+        // setup
+        setupValidationObservers()
+        setupTextWatchers()
         setupClickListeners()
     }
 
+    // ------------------- Animations -------------------
     private fun startEntranceAnimations() {
-        // Initial state - everything hidden
         binding.logoText.alpha = 0f
         binding.logoText.translationY = -100f
         binding.subtitleText.alpha = 0f
@@ -59,11 +65,9 @@ class SignupActivity : AppCompatActivity() {
         binding.registerCard.scaleX = 0.9f
         binding.registerCard.scaleY = 0.9f
 
-        // Logo entrance animation
         Handler(Looper.getMainLooper()).postDelayed({
             val logoFadeIn = ObjectAnimator.ofFloat(binding.logoText, "alpha", 0f, 1f)
             val logoSlideDown = ObjectAnimator.ofFloat(binding.logoText, "translationY", -100f, 0f)
-
             AnimatorSet().apply {
                 playTogether(logoFadeIn, logoSlideDown)
                 duration = 800
@@ -72,11 +76,10 @@ class SignupActivity : AppCompatActivity() {
             }
         }, 100)
 
-        // Subtitle entrance animation
         Handler(Looper.getMainLooper()).postDelayed({
             val subtitleFadeIn = ObjectAnimator.ofFloat(binding.subtitleText, "alpha", 0f, 1f)
-            val subtitleSlideDown = ObjectAnimator.ofFloat(binding.subtitleText, "translationY", -50f, 0f)
-
+            val subtitleSlideDown =
+                ObjectAnimator.ofFloat(binding.subtitleText, "translationY", -50f, 0f)
             AnimatorSet().apply {
                 playTogether(subtitleFadeIn, subtitleSlideDown)
                 duration = 600
@@ -85,13 +88,11 @@ class SignupActivity : AppCompatActivity() {
             }
         }, 300)
 
-        // Card entrance animation
         Handler(Looper.getMainLooper()).postDelayed({
             val cardFadeIn = ObjectAnimator.ofFloat(binding.registerCard, "alpha", 0f, 1f)
             val cardSlideUp = ObjectAnimator.ofFloat(binding.registerCard, "translationY", 100f, 0f)
             val cardScaleX = ObjectAnimator.ofFloat(binding.registerCard, "scaleX", 0.9f, 1f)
             val cardScaleY = ObjectAnimator.ofFloat(binding.registerCard, "scaleY", 0.9f, 1f)
-
             AnimatorSet().apply {
                 playTogether(cardFadeIn, cardSlideUp, cardScaleX, cardScaleY)
                 duration = 1000
@@ -111,7 +112,6 @@ class SignupActivity : AppCompatActivity() {
         )
 
         particles.forEachIndexed { index, particle ->
-            // Staggered start delay
             Handler(Looper.getMainLooper()).postDelayed({
                 startParticleAnimationWithExistingFiles(particle, index)
             }, (index * 100L))
@@ -119,26 +119,12 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun startParticleAnimationWithExistingFiles(particle: ImageView, index: Int) {
-        // Use your existing animation files with variations
         when (index % 3) {
-            0 -> {
-                // Use particle_float.xml animation
-                val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.particle_float)
-                particle.startAnimation(floatAnimation)
-            }
-            1 -> {
-                // Use float_up_down.xml animation
-                val upDownAnimation = AnimationUtils.loadAnimation(this, R.anim.float_up_down)
-                particle.startAnimation(upDownAnimation)
-            }
-            2 -> {
-                // Use pulse_animation.xml for some particles
-                val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_animation)
-                particle.startAnimation(pulseAnimation)
-            }
+            0 -> particle.startAnimation(AnimationUtils.loadAnimation(this, R.anim.particle_float))
+            1 -> particle.startAnimation(AnimationUtils.loadAnimation(this, R.anim.float_up_down))
+            2 -> particle.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse_animation))
         }
 
-        // Add additional rotation for more dynamic effect
         val rotation = ObjectAnimator.ofFloat(particle, "rotation", 0f, 360f).apply {
             duration = (8000 + index * 500).toLong()
             repeatCount = ObjectAnimator.INFINITE
@@ -147,7 +133,6 @@ class SignupActivity : AppCompatActivity() {
         }
         rotation.start()
 
-        // Add subtle horizontal drift
         val driftX = ObjectAnimator.ofFloat(
             particle, "translationX",
             0f, (10f - (index * 2f)), (-5f + (index * 1f)), 0f
@@ -161,164 +146,106 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun startBackgroundAnimations() {
-        // Animate the gradient circles for more dynamic background
+        val gradientRotation1 =
+            ObjectAnimator.ofFloat(binding.backgroundGradient1, "rotation", 0f, 360f).apply {
+                duration = 15000; repeatCount = ObjectAnimator.INFINITE; interpolator = LinearInterpolator()
+            }
 
-        // First gradient circle - slow rotation and scale pulsing
-        val gradientRotation1 = ObjectAnimator.ofFloat(binding.backgroundGradient1, "rotation", 0f, 360f).apply {
-            duration = 15000
-            repeatCount = ObjectAnimator.INFINITE
-            interpolator = LinearInterpolator()
-        }
+        val gradientScale1 =
+            ObjectAnimator.ofFloat(binding.backgroundGradient1, "scaleX", 1f, 1.1f, 0.95f, 1f).apply {
+                duration = 8000; repeatCount = ObjectAnimator.INFINITE; interpolator = AccelerateDecelerateInterpolator()
+            }
 
-        val gradientScale1 = ObjectAnimator.ofFloat(
-            binding.backgroundGradient1, "scaleX", 1f, 1.1f, 0.95f, 1f
-        ).apply {
-            duration = 8000
-            repeatCount = ObjectAnimator.INFINITE
-            interpolator = AccelerateDecelerateInterpolator()
-        }
+        val gradientScaleY1 =
+            ObjectAnimator.ofFloat(binding.backgroundGradient1, "scaleY", 1f, 1.1f, 0.95f, 1f).apply {
+                duration = 8000; repeatCount = ObjectAnimator.INFINITE; interpolator = AccelerateDecelerateInterpolator()
+            }
 
-        val gradientScaleY1 = ObjectAnimator.ofFloat(
-            binding.backgroundGradient1, "scaleY", 1f, 1.1f, 0.95f, 1f
-        ).apply {
-            duration = 8000
-            repeatCount = ObjectAnimator.INFINITE
-            interpolator = AccelerateDecelerateInterpolator()
-        }
+        val gradientRotation2 =
+            ObjectAnimator.ofFloat(binding.backgroundGradient2, "rotation", 360f, 0f).apply {
+                duration = 20000; repeatCount = ObjectAnimator.INFINITE; interpolator = LinearInterpolator()
+            }
 
-        // Second gradient circle - counter rotation and different scale timing
-        val gradientRotation2 = ObjectAnimator.ofFloat(binding.backgroundGradient2, "rotation", 360f, 0f).apply {
-            duration = 20000
-            repeatCount = ObjectAnimator.INFINITE
-            interpolator = LinearInterpolator()
-        }
+        val gradientScale2 =
+            ObjectAnimator.ofFloat(binding.backgroundGradient2, "scaleX", 1f, 0.9f, 1.15f, 1f).apply {
+                duration = 6000; repeatCount = ObjectAnimator.INFINITE; interpolator = AccelerateDecelerateInterpolator(); startDelay = 2000
+            }
 
-        val gradientScale2 = ObjectAnimator.ofFloat(
-            binding.backgroundGradient2, "scaleX", 1f, 0.9f, 1.15f, 1f
-        ).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            interpolator = AccelerateDecelerateInterpolator()
-            startDelay = 2000
-        }
+        val gradientScaleY2 =
+            ObjectAnimator.ofFloat(binding.backgroundGradient2, "scaleY", 1f, 0.9f, 1.15f, 1f).apply {
+                duration = 6000; repeatCount = ObjectAnimator.INFINITE; interpolator = AccelerateDecelerateInterpolator(); startDelay = 2000
+            }
 
-        val gradientScaleY2 = ObjectAnimator.ofFloat(
-            binding.backgroundGradient2, "scaleY", 1f, 0.9f, 1.15f, 1f
-        ).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            interpolator = AccelerateDecelerateInterpolator()
-            startDelay = 2000
-        }
-
-        // Start all gradient animations
-        gradientRotation1.start()
-        gradientScale1.start()
-        gradientScaleY1.start()
-
-        gradientRotation2.start()
-        gradientScale2.start()
-        gradientScaleY2.start()
+        gradientRotation1.start(); gradientScale1.start(); gradientScaleY1.start()
+        gradientRotation2.start(); gradientScale2.start(); gradientScaleY2.start()
     }
 
+    // Validation
+    private fun setupValidationObservers() {
+        viewModel.usernameError.observe(this) { binding.usernameInputLayout.error = it }
+        viewModel.displayNameError.observe(this) { binding.displayNameInputLayout.error = it }
+        viewModel.emailError.observe(this) { binding.emailInputLayout.error = it }
+        viewModel.passwordError.observe(this) { binding.passwordInputLayout.error = it }
+        viewModel.confirmPasswordError.observe(this) { binding.confirmPasswordInputLayout.error = it }
+    }
+
+    private fun setupTextWatchers() {
+        binding.usernameEditText.addTextChangedListener { viewModel.validateUsername(it.toString()) }
+        binding.displayNameEditText.addTextChangedListener { viewModel.validateDisplayName(it.toString()) }
+        binding.emailEditText.addTextChangedListener { viewModel.validateEmail(it.toString()) }
+        binding.passwordEditText.addTextChangedListener { viewModel.validatePassword(it.toString()) }
+        binding.confirmPasswordEditText.addTextChangedListener {
+            viewModel.validateConfirmPassword(
+                binding.passwordEditText.text.toString(),
+                it.toString()
+            )
+        }
+    }
+
+    // Clicks
     private fun setupClickListeners() {
-        // Sign up button click with animation
         binding.signUpButton.setOnClickListener {
-            // Button press animation
+            // Button tap micro-animation
             val scaleDown = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.95f)
             val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.95f)
             val scaleUp = ObjectAnimator.ofFloat(it, "scaleX", 0.95f, 1f)
             val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.95f, 1f)
-
             AnimatorSet().apply {
-                play(scaleDown).with(scaleDownY)
-                play(scaleUp).with(scaleUpY).after(scaleDown)
-                duration = 100
-                start()
+                play(scaleDown).with(scaleDownY); play(scaleUp).with(scaleUpY).after(scaleDown)
+                duration = 100; start()
             }
 
-            // Handle sign up logic here
-            performSignUp()
+            // Gather inputs
+            val username = binding.usernameEditText.text.toString().trim()
+            val displayName = binding.displayNameEditText.text.toString().trim()
+            val email = binding.emailEditText.text.toString().trim()
+            val password = binding.passwordEditText.text.toString()
+            val confirmPassword = binding.confirmPasswordEditText.text.toString()
+
+            // Trigger final validation in VM
+            viewModel.validateUsername(username)
+            viewModel.validateDisplayName(displayName)
+            viewModel.validateEmail(email)
+            viewModel.validatePassword(password)
+            viewModel.validateConfirmPassword(password, confirmPassword)
+
+            // Proceed only if all errors are null
+            if (binding.usernameInputLayout.error == null &&
+                binding.displayNameInputLayout.error == null &&
+                binding.emailInputLayout.error == null &&
+                binding.passwordInputLayout.error == null &&
+                binding.confirmPasswordInputLayout.error == null
+            ) {
+                // TODO: viewModel.signup(username, displayName, email, password)
+            }
         }
 
-        // Login link click with subtle animation
         binding.loginLinkText.setOnClickListener {
             val scaleX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 1.1f, 1f)
             val scaleY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 1.1f, 1f)
-
-            AnimatorSet().apply {
-                playTogether(scaleX, scaleY)
-                duration = 200
-                start()
-            }
-
-            // Navigate back with reverse animation
+            AnimatorSet().apply { playTogether(scaleX, scaleY); duration = 200; start() }
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
-
-    }
-
-    private fun performSignUp() {
-        val username = binding.usernameEditText.text.toString().trim()
-        val displayName = binding.displayNameEditText.text.toString().trim()
-        val email = binding.emailEditText.text.toString().trim()
-        val password = binding.passwordEditText.text.toString()
-        val confirmPassword = binding.confirmPasswordEditText.text.toString()
-
-        // Add your validation and signup logic here
-        if (validateInputs(username, displayName, email, password, confirmPassword)) {
-            // Proceed with signup
-        }
-    }
-
-    private fun validateInputs(username: String, displayName: String, email: String, password: String, confirmPassword: String): Boolean {
-        // Reset error states
-        binding.usernameInputLayout.error = null
-        binding.displayNameInputLayout.error = null
-        binding.emailInputLayout.error = null
-        binding.passwordInputLayout.error = null
-        binding.confirmPasswordInputLayout.error = null
-
-        var isValid = true
-
-        if (username.isEmpty()) {
-            binding.usernameInputLayout.error = "Username is required"
-            isValid = false
-        }
-
-        if (displayName.isEmpty()) {
-            binding.displayNameInputLayout.error = "Display name is required"
-            isValid = false
-        }
-
-        if (email.isEmpty()) {
-            binding.emailInputLayout.error = "Email is required"
-            isValid = false
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.emailInputLayout.error = "Please enter a valid email"
-            isValid = false
-        }
-
-        if (password.isEmpty()) {
-            binding.passwordInputLayout.error = "Password is required"
-            isValid = false
-        } else if (password.length < 6) {
-            binding.passwordInputLayout.error = "Password must be at least 6 characters"
-            isValid = false
-        }
-
-        if (confirmPassword != password) {
-            binding.confirmPasswordInputLayout.error = "Passwords do not match"
-            isValid = false
-        }
-
-        return isValid
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Clean up binding reference
-        // binding = null (not needed for activities, only fragments)
     }
 }
