@@ -5,15 +5,639 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/android:colorBackground"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Custom Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="?attr/colorSurface"
+        android:elevation="@dimen/elevation_medium"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:contentInsetStart="@dimen/spacing_md">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Profile Picture -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profilePictureCard"
+                android:layout_width="@dimen/avatar_size_medium"
+                android:layout_height="@dimen/avatar_size_medium"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="?attr/colorPrimaryContainer"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_person"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="profile picture"
+                    app:tint="?attr/colorOnPrimaryContainer" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- App Title -->
+            <TextView
+                android:id="@+id/appTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_size_lg"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginStart="@dimen/spacing_md"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/profilePictureCard" />
+
+            <!-- Month Selector -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/monthSelectorCard"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/spacing_md"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="?attr/colorPrimaryContainer"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/monthSelector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/spacing_md"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/selectedMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="January 2024"
+                        android:textSize="@dimen/text_size_sm"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:src="@drawable/ic_arrow_drop_down"
+                        app:tint="?attr/colorOnPrimaryContainer" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- Main ScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingBottom="@dimen/spacing_xl">
+
+            <!-- Info Boxes Grid -->
+            <LinearLayout
+                android:id="@+id/infoBoxesContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/spacing_md"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- First Row: Income and Expense -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/spacing_sm">
+
+                    <!-- Monthly Income Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/incomeCard"
+                        style="@style/Widget.SpendWise.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dashboard_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        app:cardBackgroundColor="?attr/colorSurface"
+                        app:strokeColor="@color/income_green"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/spacing_md">
+
+                            <ImageView
+                                android:id="@+id/incomeIcon"
+                                android:layout_width="@dimen/icon_size_medium"
+                                android:layout_height="@dimen/icon_size_medium"
+                                android:src="@drawable/ic_trending_up"
+                                app:tint="@color/income_green"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <TextView
+                                android:id="@+id/incomeLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly Income"
+                                android:textSize="@dimen/text_size_xs"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                android:layout_marginTop="@dimen/spacing_sm"
+                                app:layout_constraintTop_toBottomOf="@id/incomeIcon"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <TextView
+                                android:id="@+id/incomeAmount"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="₹25,000"
+                                android:textSize="@dimen/text_size_lg"
+                                android:textStyle="bold"
+                                android:textColor="@color/income_green"
+                                app:layout_constraintTop_toBottomOf="@id/incomeLabel"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Monthly Expense Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/expenseCard"
+                        style="@style/Widget.SpendWise.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dashboard_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        app:cardBackgroundColor="?attr/colorSurface"
+                        app:strokeColor="@color/expense_red"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/spacing_md">
+
+                            <ImageView
+                                android:id="@+id/expenseIcon"
+                                android:layout_width="@dimen/icon_size_medium"
+                                android:layout_height="@dimen/icon_size_medium"
+                                android:src="@drawable/ic_trending_down"
+                                app:tint="@color/expense_red"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <TextView
+                                android:id="@+id/expenseLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly Expense"
+                                android:textSize="@dimen/text_size_xs"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                android:layout_marginTop="@dimen/spacing_sm"
+                                app:layout_constraintTop_toBottomOf="@id/expenseIcon"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <TextView
+                                android:id="@+id/expenseAmount"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="₹18,500"
+                                android:textSize="@dimen/text_size_lg"
+                                android:textStyle="bold"
+                                android:textColor="@color/expense_red"
+                                app:layout_constraintTop_toBottomOf="@id/expenseLabel"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <!-- Second Row: Savings and Transactions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Saved Money Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/savingsCard"
+                        style="@style/Widget.SpendWise.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dashboard_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        app:cardBackgroundColor="?attr/colorSurface"
+                        app:strokeColor="@color/savings_blue"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/spacing_md">
+
+                            <ImageView
+                                android:id="@+id/savingsIcon"
+                                android:layout_width="@dimen/icon_size_medium"
+                                android:layout_height="@dimen/icon_size_medium"
+                                android:src="@drawable/ic_savings"
+                                app:tint="@color/savings_blue"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <TextView
+                                android:id="@+id/savingsLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Saved Money"
+                                android:textSize="@dimen/text_size_xs"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                android:layout_marginTop="@dimen/spacing_sm"
+                                app:layout_constraintTop_toBottomOf="@id/savingsIcon"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <TextView
+                                android:id="@+id/lastMonthSavings"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="₹6,500"
+                                android:textSize="@dimen/text_size_md"
+                                android:textStyle="bold"
+                                android:textColor="@color/savings_blue"
+                                app:layout_constraintTop_toBottomOf="@id/savingsLabel"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <TextView
+                                android:id="@+id/totalSavings"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Total: ₹45,200"
+                                android:textSize="@dimen/text_size_xs"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                app:layout_constraintTop_toBottomOf="@id/lastMonthSavings"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Number of Transactions Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/transactionsCard"
+                        style="@style/Widget.SpendWise.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dashboard_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        app:cardBackgroundColor="?attr/colorSurface"
+                        app:strokeColor="?attr/colorPrimary"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/spacing_md">
+
+                            <ImageView
+                                android:id="@+id/transactionsIcon"
+                                android:layout_width="@dimen/icon_size_medium"
+                                android:layout_height="@dimen/icon_size_medium"
+                                android:src="@drawable/ic_receipt_long"
+                                app:tint="?attr/colorPrimary"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <TextView
+                                android:id="@+id/transactionsLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Transactions"
+                                android:textSize="@dimen/text_size_xs"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                android:layout_marginTop="@dimen/spacing_sm"
+                                app:layout_constraintTop_toBottomOf="@id/transactionsIcon"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <TextView
+                                android:id="@+id/transactionsCount"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="47"
+                                android:textSize="@dimen/text_size_lg"
+                                android:textStyle="bold"
+                                android:textColor="?attr/colorPrimary"
+                                app:layout_constraintTop_toBottomOf="@id/transactionsLabel"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Charts Section -->
+            <TextView
+                android:id="@+id/chartsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analytics"
+                android:textSize="@dimen/text_size_lg"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginTop="@dimen/spacing_xl"
+                app:layout_constraintTop_toBottomOf="@id/infoBoxesContainer"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Pie Chart for Spending by Category -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/pieChartCard"
+                style="@style/Widget.SpendWise.Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:layout_constraintTop_toBottomOf="@id/chartsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_md">
+
+                    <TextView
+                        android:id="@+id/pieChartTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Spending by Category"
+                        android:textSize="@dimen/text_size_md"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- Pie Chart Placeholder -->
+                    <View
+                        android:id="@+id/pieChartView"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/chart_height_medium"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:background="@drawable/pie_chart_placeholder"
+                        app:layout_constraintTop_toBottomOf="@id/pieChartTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Chart Legend -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/pieChartLegend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_constraintTop_toBottomOf="@id/pieChartView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:listitem="@layout/item_chart_legend"
+                        tools:itemCount="4" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Budget Half Pie Chart -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/budgetChartCard"
+                style="@style/Widget.SpendWise.Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:layout_constraintTop_toBottomOf="@id/pieChartCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_md">
+
+                    <TextView
+                        android:id="@+id/budgetChartTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Monthly Budget"
+                        android:textSize="@dimen/text_size_md"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- Half Pie Chart Placeholder -->
+                    <View
+                        android:id="@+id/budgetChartView"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:background="@drawable/half_pie_chart_placeholder"
+                        app:layout_constraintTop_toBottomOf="@id/budgetChartTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Budget Legend -->
+                    <LinearLayout
+                        android:id="@+id/budgetLegend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        app:layout_constraintTop_toBottomOf="@id/budgetChartView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <!-- Remaining Legend -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/spacing_lg">
+
+                            <View
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/legend_circle"
+                                android:backgroundTint="@color/income_green" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Remaining: ₹6,500"
+                                android:textSize="@dimen/text_size_sm"
+                                android:textColor="?attr/colorOnSurface"
+                                android:layout_marginStart="@dimen/spacing_xs" />
+
+                        </LinearLayout>
+
+                        <!-- Spent Legend -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/legend_circle"
+                                android:backgroundTint="@color/expense_red" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spent: ₹18,500"
+                                android:textSize="@dimen/text_size_sm"
+                                android:textColor="?attr/colorOnSurface"
+                                android:layout_marginStart="@dimen/spacing_xs" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Navigation Buttons -->
+            <TextView
+                android:id="@+id/actionsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quick Actions"
+                android:textSize="@dimen/text_size_lg"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginTop="@dimen/spacing_xl"
+                app:layout_constraintTop_toBottomOf="@id/budgetChartCard"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Action Buttons Grid -->
+            <LinearLayout
+                android:id="@+id/actionButtonsContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/spacing_md"
+                app:layout_constraintTop_toBottomOf="@id/actionsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- First Row: Transaction History and Add Transaction -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/spacing_sm">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/transactionHistoryButton"
+                        style="@style/Widget.SpendWise.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_height_large"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:text="Transaction History"
+                        android:textColor="?attr/colorPrimary"
+                        app:strokeColor="?attr/colorPrimary"
+                        app:icon="@drawable/ic_history"
+                        app:iconTint="?attr/colorPrimary"
+                        app:iconGravity="textStart" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addTransactionButton"
+                        style="@style/Widget.SpendWise.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_height_large"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:text="Add Transaction"
+                        android:textColor="?attr/colorOnPrimary"
+                        app:backgroundTint="?attr/colorPrimary"
+                        app:icon="@drawable/ic_add"
+                        app:iconTint="?attr/colorOnPrimary"
+                        app:iconGravity="textStart" />
+
+                </LinearLayout>
+
+                <!-- Second Row: Statistics Button (Full Width) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/statisticsButton"
+                    style="@style/Widget.SpendWise.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height_large"
+                    android:text="Statistics &amp; Analytics"
+                    android:textColor="?attr/colorPrimary"
+                    app:strokeColor="?attr/colorPrimary"
+                    app:icon="@drawable/ic_analytics"
+                    app:iconTint="?attr/colorPrimary"
+                    app:iconGravity="textStart" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:startColor="@color/income_green"
+        android:endColor="@color/expense_red"
+        android:type="sweep"
+        android:centerX="0.5"
+        android:centerY="1.0" />
+    <stroke
+        android:width="2dp"
+        android:color="?attr/colorOutlineVariant" />
+</shape>
