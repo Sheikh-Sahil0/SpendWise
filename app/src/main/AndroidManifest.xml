@@ -37,7 +37,7 @@
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SpendWise" />
+            android:theme="@style/Theme.SpendWise.NoActionBar" />
     </application>
 
 </manifest>

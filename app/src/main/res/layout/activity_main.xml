@@ -400,165 +400,191 @@
                 app:layout_constraintTop_toBottomOf="@id/infoBoxesContainer"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- Pie Chart for Spending by Category -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/pieChartCard"
-                style="@style/Widget.SpendWise.Card"
+            <!-- Horizontal Scrollable Charts Container -->
+            <HorizontalScrollView
+                android:id="@+id/chartsScrollView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                app:cardBackgroundColor="?attr/colorSurface"
+                android:scrollbars="horizontal"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toBottomOf="@id/chartsTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/chartsContainer"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_md">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/pieChartTitle"
-                        android:layout_width="wrap_content"
+                    <!-- Pie Chart for Spending by Category -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/pieChartCard"
+                        style="@style/Widget.SpendWise.Card"
+                        android:layout_width="320dp"
                         android:layout_height="wrap_content"
-                        android:text="Spending by Category"
-                        android:textSize="@dimen/text_size_md"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurface"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_marginEnd="@dimen/spacing_md"
+                        app:cardBackgroundColor="?attr/colorSurface">
 
-                    <!-- Pie Chart Placeholder -->
-                    <View
-                        android:id="@+id/pieChartView"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/chart_height_medium"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:background="@drawable/pie_chart_placeholder"
-                        app:layout_constraintTop_toBottomOf="@id/pieChartTitle"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <!-- Chart Legend -->
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/pieChartLegend"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:nestedScrollingEnabled="false"
-                        app:layout_constraintTop_toBottomOf="@id/pieChartView"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:listitem="@layout/item_chart_legend"
-                        tools:itemCount="4" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Budget Half Pie Chart -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/budgetChartCard"
-                style="@style/Widget.SpendWise.Card"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_md"
-                app:cardBackgroundColor="?attr/colorSurface"
-                app:layout_constraintTop_toBottomOf="@id/pieChartCard"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_md">
-
-                    <TextView
-                        android:id="@+id/budgetChartTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Monthly Budget"
-                        android:textSize="@dimen/text_size_md"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurface"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <!-- Half Pie Chart Placeholder -->
-                    <View
-                        android:id="@+id/budgetChartView"
-                        android:layout_width="0dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:background="@drawable/half_pie_chart_placeholder"
-                        app:layout_constraintTop_toBottomOf="@id/budgetChartTitle"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <!-- Budget Legend -->
-                    <LinearLayout
-                        android:id="@+id/budgetLegend"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        app:layout_constraintTop_toBottomOf="@id/budgetChartView"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
-
-                        <!-- Remaining Legend -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginEnd="@dimen/spacing_lg">
-
-                            <View
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:background="@drawable/legend_circle"
-                                android:backgroundTint="@color/income_green" />
+                            android:padding="@dimen/spacing_md">
 
                             <TextView
+                                android:id="@+id/pieChartTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Remaining: ₹6,500"
-                                android:textSize="@dimen/text_size_sm"
+                                android:text="Spending by Category"
+                                android:textSize="@dimen/text_size_md"
+                                android:textStyle="bold"
                                 android:textColor="?attr/colorOnSurface"
-                                android:layout_marginStart="@dimen/spacing_xs" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
 
-                        </LinearLayout>
-
-                        <!-- Spent Legend -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-
+                            <!-- Pie Chart Placeholder -->
                             <View
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:background="@drawable/legend_circle"
-                                android:backgroundTint="@color/expense_red" />
+                                android:id="@+id/pieChartView"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/chart_height_medium"
+                                android:layout_marginTop="@dimen/spacing_md"
+                                android:background="@drawable/pie_chart_placeholder"
+                                app:layout_constraintTop_toBottomOf="@id/pieChartTitle"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <!-- Horizontal Chart Legend -->
+                            <HorizontalScrollView
+                                android:id="@+id/pieChartLegendScrollView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_md"
+                                android:scrollbars="none"
+                                app:layout_constraintTop_toBottomOf="@id/pieChartView"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/pieChartLegend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:nestedScrollingEnabled="false"
+                                    android:orientation="horizontal"
+                                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    tools:listitem="@layout/item_chart_legend"
+                                    tools:itemCount="4" />
+
+                            </HorizontalScrollView>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Budget Half Pie Chart -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/budgetChartCard"
+                        style="@style/Widget.SpendWise.Card"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_md"
+                        app:cardBackgroundColor="?attr/colorSurface">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_md">
 
                             <TextView
+                                android:id="@+id/budgetChartTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Spent: ₹18,500"
-                                android:textSize="@dimen/text_size_sm"
+                                android:text="Monthly Budget"
+                                android:textSize="@dimen/text_size_md"
+                                android:textStyle="bold"
                                 android:textColor="?attr/colorOnSurface"
-                                android:layout_marginStart="@dimen/spacing_xs" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
 
-                        </LinearLayout>
+                            <!-- Half Pie Chart Placeholder -->
+                            <View
+                                android:id="@+id/budgetChartView"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="@dimen/spacing_md"
+                                android:background="@drawable/half_pie_chart_placeholder"
+                                app:layout_constraintTop_toBottomOf="@id/budgetChartTitle"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
 
-                    </LinearLayout>
+                            <!-- Budget Legend -->
+                            <LinearLayout
+                                android:id="@+id/budgetLegend"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="@dimen/spacing_md"
+                                app:layout_constraintTop_toBottomOf="@id/budgetChartView"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <!-- Remaining Legend -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginEnd="@dimen/spacing_lg">
 
-            </com.google.android.material.card.MaterialCardView>
+                                    <View
+                                        android:layout_width="12dp"
+                                        android:layout_height="12dp"
+                                        android:background="@drawable/legend_circle"
+                                        android:backgroundTint="@color/income_green" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Remaining: ₹6,500"
+                                        android:textSize="@dimen/text_size_sm"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:layout_marginStart="@dimen/spacing_xs" />
+
+                                </LinearLayout>
+
+                                <!-- Spent Legend -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
+
+                                    <View
+                                        android:layout_width="12dp"
+                                        android:layout_height="12dp"
+                                        android:background="@drawable/legend_circle"
+                                        android:backgroundTint="@color/expense_red" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Spent: ₹18,500"
+                                        android:textSize="@dimen/text_size_sm"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:layout_marginStart="@dimen/spacing_xs" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
             <!-- Navigation Buttons -->
             <TextView
@@ -570,7 +596,7 @@
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
                 android:layout_marginTop="@dimen/spacing_xl"
-                app:layout_constraintTop_toBottomOf="@id/budgetChartCard"
+                app:layout_constraintTop_toBottomOf="@id/chartsScrollView"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <!-- Action Buttons Grid -->
