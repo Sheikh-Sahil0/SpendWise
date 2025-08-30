@@ -617,6 +617,7 @@
                     android:orientation="horizontal"
                     android:layout_marginBottom="@dimen/spacing_sm">
 
+                    <!-- Transaction History Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/transactionHistoryButton"
                         style="@style/Widget.SpendWise.Button.Outlined"
@@ -624,13 +625,17 @@
                         android:layout_height="@dimen/button_height_large"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/spacing_xs"
-                        android:text="Transaction History"
+                        android:text="Transaction\nHistory"
                         android:textColor="?attr/colorPrimary"
+                        android:gravity="center"
+                        android:lineSpacingExtra="2dp"
                         app:strokeColor="?attr/colorPrimary"
                         app:icon="@drawable/ic_history"
                         app:iconTint="?attr/colorPrimary"
-                        app:iconGravity="textStart" />
+                        app:iconGravity="textStart"
+                        app:iconPadding="@dimen/spacing_sm"/>
 
+                    <!-- Add Transaction Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/addTransactionButton"
                         style="@style/Widget.SpendWise.Button"
@@ -638,14 +643,17 @@
                         android:layout_height="@dimen/button_height_large"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/spacing_xs"
-                        android:text="Add Transaction"
+                        android:text="Add\nTransaction"
                         android:textColor="?attr/colorOnPrimary"
+                        android:gravity="center"
+                        android:lineSpacingExtra="2dp"
                         app:backgroundTint="?attr/colorPrimary"
                         app:icon="@drawable/ic_add"
                         app:iconTint="?attr/colorOnPrimary"
-                        app:iconGravity="textStart" />
-
+                        app:iconGravity="textStart"
+                        app:iconPadding="@dimen/spacing_sm"/>
                 </LinearLayout>
+
 
                 <!-- Second Row: Statistics Button (Full Width) -->
                 <com.google.android.material.button.MaterialButton
