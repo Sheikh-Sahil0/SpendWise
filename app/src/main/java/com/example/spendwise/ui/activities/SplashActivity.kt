@@ -13,7 +13,7 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
-import com.example.spendwise.MainActivity
+import com.example.spendwise.ui.activities.MainActivity
 import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivitySplashBinding
 

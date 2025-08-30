@@ -19,7 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
-import com.example.spendwise.MainActivity
+import com.example.spendwise.ui.activities.MainActivity
 import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivityLoginBinding
 import com.example.spendwise.viewmodel.LoginViewModel
