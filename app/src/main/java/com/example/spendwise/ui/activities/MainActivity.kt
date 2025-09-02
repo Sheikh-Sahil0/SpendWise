@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivityMainBinding
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -101,6 +103,7 @@ class MainActivity : AppCompatActivity() {
             legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
             legend.isWordWrapEnabled = true
             legend.textSize = 12f
+            legend.textColor = ContextCompat.getColor(this@MainActivity, R.color.md_theme_light_onBackground)
 
             // Styling
             holeRadius = 40f
@@ -154,6 +157,7 @@ class MainActivity : AppCompatActivity() {
             legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
             legend.isWordWrapEnabled = true
             legend.textSize = 12f
+            legend.textColor = ContextCompat.getColor(this@MainActivity, R.color.md_theme_light_onBackground)
 
             // Custom legend with amounts
             val remEntry = com.github.mikephil.charting.components.LegendEntry().apply {
