@@ -181,13 +181,18 @@ class MainActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         // Profile Picture Click - Navigate to ProfileActivity
         binding.profilePictureCard.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java).apply {
-                putExtra("displayName", "Shaikh Sahil")
-                putExtra("username", "shaikh_sahil")
-                putExtra("email", "shaikhsahil@example.com")
+            try {
+                val intent = Intent(this, ProfileActivity::class.java).apply {
+                    putExtra("displayName", "Shaikh Sahil")
+                    putExtra("username", "shaikh_sahil")
+                    putExtra("email", "shaikhsahil@example.com")
+                }
+                startActivity(intent)
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                showPlaceholderMessage("Error opening profile: ${e.message}")
             }
-            startActivity(intent)
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
 
         // Month Selector Click
@@ -199,8 +204,15 @@ class MainActivity : AppCompatActivity() {
             showPlaceholderMessage("Transaction History will be implemented later")
         }
 
+        // Fixed Add Transaction Button with error handling
         binding.addTransactionButton.setOnClickListener {
-            showPlaceholderMessage("Add Transaction will be implemented later")
+            try {
+                val intent = Intent(this@MainActivity, AddTransactionActivity::class.java)
+                startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                showPlaceholderMessage("Error opening add transaction: ${e.message}")
+            }
         }
 
         binding.statisticsButton.setOnClickListener {

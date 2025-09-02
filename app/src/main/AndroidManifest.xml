@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.SpendWise">
         <activity
+            android:name=".ui.activities.AddTransactionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SpendWise.NoActionBar" />
+        <activity
             android:name=".ui.activities.EditProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -42,7 +47,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Make sure to remove the LAUNCHER intent-filter from MainActivity if it exists -->
+        </activity>
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="false"
