@@ -63,32 +63,18 @@ class TransactionHistoryActivity : AppCompatActivity() {
     }
 
     private fun showTransactionOptions(position: Int, description: String) {
-        val options = arrayOf("Edit", "Delete")
-        AlertDialog.Builder(this)
-            .setTitle(description)
-            .setItems(options) { _, which ->
-                when (which) {
-                    0 -> editTransaction(position, description)
-                    1 -> deleteTransaction(position, description)
-                }
-            }
-            .show()
-    }
-
-    private fun editTransaction(position: Int, description: String) {
-        Snackbar.make(binding.root, "Edit: $description", Snackbar.LENGTH_SHORT).show()
-        // TODO: Navigate to EditTransactionActivity
-    }
-
-    private fun deleteTransaction(position: Int, description: String) {
         AlertDialog.Builder(this)
             .setTitle("Delete Transaction")
             .setMessage("Are you sure you want to delete \"$description\"?")
             .setPositiveButton("Delete") { _, _ ->
-                Snackbar.make(binding.root, "Deleted: $description", Snackbar.LENGTH_SHORT).show()
-                // TODO: Remove from database and refresh adapter
+                deleteTransaction(position, description)
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    private fun deleteTransaction(position: Int, description: String) {
+        Snackbar.make(binding.root, "Deleted: $description", Snackbar.LENGTH_SHORT).show()
+        // TODO: Remove from database and refresh adapter
     }
 }
