@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivityTransactionHistoryBinding
 import com.example.spendwise.databinding.ItemTransactionBinding
+import com.example.spendwise.databinding.DialogDeleteTransactionBinding
 import com.example.spendwise.ui.adapters.TransactionAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 class TransactionHistoryActivity : AppCompatActivity() {
@@ -63,14 +65,42 @@ class TransactionHistoryActivity : AppCompatActivity() {
     }
 
     private fun showTransactionOptions(position: Int, description: String) {
-        AlertDialog.Builder(this)
-            .setTitle("Delete Transaction")
-            .setMessage("Are you sure you want to delete \"$description\"?")
-            .setPositiveButton("Delete") { _, _ ->
-                deleteTransaction(position, description)
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
+        showCustomDeleteDialog(position, description)
+    }
+
+    private fun showCustomDeleteDialog(position: Int, description: String) {
+        val dialogBinding = DialogDeleteTransactionBinding.inflate(layoutInflater)
+
+        // Set transaction details in the dialog
+        dialogBinding.transactionTitle.text = description
+        dialogBinding.transactionDescription.text = "This action cannot be undone. The transaction will be permanently removed from your records."
+
+        val dialog = MaterialAlertDialogBuilder(this, R.style.CustomAlertDialogTheme)
+            .setView(dialogBinding.root)
+            .setCancelable(true)
+            .create()
+
+        // Set click listeners for custom buttons
+        dialogBinding.cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.deleteButton.setOnClickListener {
+            dialog.dismiss()
+            deleteTransaction(position, description)
+        }
+
+        // Show the dialog
+        dialog.show()
+
+        // Optional: Set dialog window properties for better appearance
+        dialog.window?.let { window ->
+            window.setBackgroundDrawableResource(R.drawable.dialog_background)
+            // You can also set custom width/height if needed
+            // val params = window.attributes
+            // params.width = ViewGroup.LayoutParams.MATCH_PARENT
+            // window.attributes = params
+        }
     }
 
     private fun deleteTransaction(position: Int, description: String) {

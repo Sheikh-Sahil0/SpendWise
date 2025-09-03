@@ -183,4 +183,26 @@
     <style name="Widget.SpendWise.ImageView.Rounded" parent="">
         <item name="android:scaleType">centerCrop</item>
     </style>
+
+    <!-- Custom Alert Dialog Theme -->
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/CustomDialogTitle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/CustomDialogBody</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+    </style>
+
+    <!-- Custom Dialog Title Style -->
+    <style name="CustomDialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Custom Dialog Body Style -->
+    <style name="CustomDialogBody" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
 </resources>

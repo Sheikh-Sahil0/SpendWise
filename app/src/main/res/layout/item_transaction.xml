@@ -103,20 +103,20 @@
             android:textStyle="bold"
             android:textColor="@color/expense_red"
             app:layout_constraintTop_toTopOf="@id/typeIconCard"
-            app:layout_constraintEnd_toStartOf="@id/moreOptionsButton"
+            app:layout_constraintEnd_toStartOf="@id/deleteButton"
             tools:text="-₹2,500" />
 
-        <!-- More Options Button -->
+        <!-- Delete Button (replaced More Options) -->
         <ImageView
-            android:id="@+id/moreOptionsButton"
-            android:layout_width="@dimen/icon_size_large"
-            android:layout_height="@dimen/icon_size_large"
-            android:src="@drawable/ic_more_vert"
+            android:id="@+id/deleteButton"
+            android:layout_width="@dimen/icon_size_medium"
+            android:layout_height="@dimen/icon_size_medium"
+            android:src="@drawable/ic_delete"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="more options"
-            app:tint="?attr/colorOnSurfaceVariant"
+            android:contentDescription="delete transaction"
+            app:tint="@color/expense_red"
             app:layout_constraintTop_toTopOf="@id/typeIconCard"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class TransactionAdapter(
-    private val onMoreClick: (Int, String) -> Unit
+    private val onDeleteClick: (Int, String) -> Unit
 ) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
 
     // Mock data - just arrays of strings and numbers
@@ -86,8 +86,8 @@ class TransactionAdapter(
             }
 
             // Click listeners
-            binding.moreOptionsButton.setOnClickListener {
-                onMoreClick(position, descriptions[position])
+            binding.deleteButton.setOnClickListener {
+                onDeleteClick(position, descriptions[position])
             }
 
             binding.root.setOnClickListener {
