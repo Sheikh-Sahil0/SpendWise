@@ -201,7 +201,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.transactionHistoryButton.setOnClickListener {
-            showPlaceholderMessage("Transaction History will be implemented later")
+            try {
+                val intent = Intent(this@MainActivity, TransactionHistoryActivity::class.java)
+                startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                showPlaceholderMessage("Error opening transactions history: ${e.message}")
+            }
         }
 
         // Fixed Add Transaction Button with error handling

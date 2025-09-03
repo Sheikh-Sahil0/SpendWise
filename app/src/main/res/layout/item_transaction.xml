@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.SpendWise.Card.Outlined"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/spacing_xs"
+    android:layout_marginHorizontal="0dp"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:strokeWidth="1dp"
+    app:strokeColor="?attr/colorOutlineVariant">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Transaction Type Icon -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/typeIconCard"
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            app:cardBackgroundColor="?attr/colorPrimaryContainer"
+            app:cardCornerRadius="@dimen/icon_size_large"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/typeIcon"
+                android:layout_width="@dimen/icon_size_medium"
+                android:layout_height="@dimen/icon_size_medium"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_trending_down"
+                app:tint="?attr/colorOnPrimaryContainer"
+                tools:src="@drawable/ic_trending_up" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Transaction Description -->
+        <TextView
+            android:id="@+id/transactionDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Grocery Shopping"
+            android:textSize="@dimen/text_size_md"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="@id/typeIconCard"
+            app:layout_constraintStart_toEndOf="@id/typeIconCard"
+            app:layout_constraintEnd_toStartOf="@id/transactionAmount"
+            tools:text="Grocery Shopping at Walmart" />
+
+        <!-- Transaction Category (for expenses) -->
+        <TextView
+            android:id="@+id/transactionCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Food &amp; Dining"
+            android:textSize="@dimen/text_size_sm"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/transactionDescription"
+            app:layout_constraintStart_toEndOf="@id/typeIconCard"
+            app:layout_constraintEnd_toStartOf="@id/transactionAmount"
+            tools:text="Food &amp; Dining" />
+
+        <!-- Transaction Date -->
+        <TextView
+            android:id="@+id/transactionDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sep 02, 2025"
+            android:textSize="@dimen/text_size_xs"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@id/transactionCategory"
+            app:layout_constraintStart_toEndOf="@id/typeIconCard"
+            app:layout_constraintEnd_toStartOf="@id/transactionAmount"
+            app:layout_constraintBottom_toBottomOf="@id/typeIconCard"
+            tools:text="Today, 02:30 PM" />
+
+        <!-- Transaction Amount -->
+        <TextView
+            android:id="@+id/transactionAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹2,500"
+            android:textSize="@dimen/text_size_lg"
+            android:textStyle="bold"
+            android:textColor="@color/expense_red"
+            app:layout_constraintTop_toTopOf="@id/typeIconCard"
+            app:layout_constraintEnd_toStartOf="@id/moreOptionsButton"
+            tools:text="-₹2,500" />
+
+        <!-- More Options Button -->
+        <ImageView
+            android:id="@+id/moreOptionsButton"
+            android:layout_width="@dimen/icon_size_large"
+            android:layout_height="@dimen/icon_size_large"
+            android:src="@drawable/ic_more_vert"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="more options"
+            app:tint="?attr/colorOnSurfaceVariant"
+            app:layout_constraintTop_toTopOf="@id/typeIconCard"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
