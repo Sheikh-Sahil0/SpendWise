@@ -56,16 +56,12 @@ class TransactionHistoryActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.transactionsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.transactionsRecyclerView.adapter = TransactionAdapter { position, description ->
-            showTransactionOptions(position, description)
+            showCustomDeleteDialog(position, description)
         }
 
         // Hide loading and empty state
         binding.loadingIndicator.visibility = View.GONE
         binding.emptyStateLayout.visibility = View.GONE
-    }
-
-    private fun showTransactionOptions(position: Int, description: String) {
-        showCustomDeleteDialog(position, description)
     }
 
     private fun showCustomDeleteDialog(position: Int, description: String) {

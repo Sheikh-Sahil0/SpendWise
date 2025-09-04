@@ -116,6 +116,7 @@
             android:layout_weight="1"
             android:layout_marginStart="@dimen/spacing_sm"
             android:text="Delete"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             android:backgroundTint="@color/expense_red"

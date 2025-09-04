@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.SpendWise">
         <activity
-            android:name=".ui.activities.EditTransactionActivity"
-            android:exported="false" />
+            android:name=".ui.activities.StatisticsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SpendWise.NoActionBar" />
         <activity
             android:name=".ui.activities.TransactionHistoryActivity"
             android:exported="false"

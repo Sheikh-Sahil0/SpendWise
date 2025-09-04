@@ -222,7 +222,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.statisticsButton.setOnClickListener {
-            showPlaceholderMessage("Statistics will be implemented later")
+            try {
+                val intent = Intent(this@MainActivity, StatisticsActivity::class.java)
+                startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                showPlaceholderMessage("Error opening add statistics: ${e.message}")
+            }
         }
     }
 
