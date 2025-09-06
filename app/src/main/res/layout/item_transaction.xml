@@ -115,7 +115,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="delete transaction"
+            android:contentDescription="@string/delete_transaction_button"
             app:tint="@color/expense_red"
             app:layout_constraintTop_toTopOf="@id/typeIconCard"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -34,7 +34,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:contentDescription="back"
+                android:contentDescription="@string/back_icon"
                 app:tint="?attr/colorOnSurface"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
                 android:id="@+id/screenTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Transaction History"
+                android:text="@string/transaction_history"
                 android:textSize="@dimen/text_size_lg"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
@@ -65,7 +65,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:contentDescription="filter"
+                android:contentDescription="@string/filter_button"
                 app:tint="?attr/colorOnSurface"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_sm"
-            android:hint="Search transactions..."
+            android:hint="@string/search_transactions"
             app:startIconDrawable="@drawable/ic_search"
             app:startIconTint="?attr/colorOnSurfaceVariant"
             app:endIconMode="clear_text"
@@ -140,7 +140,7 @@
                 style="@style/Widget.SpendWise.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All"
+                android:text="@string/all"
                 android:checked="true"
                 android:checkable="true" />
 
@@ -149,7 +149,7 @@
                 style="@style/Widget.SpendWise.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Income"
+                android:text="@string/income"
                 android:checkable="true"
                 app:chipIcon="@drawable/ic_trending_up"
                 app:chipIconTint="@color/income_green" />
@@ -159,7 +159,7 @@
                 style="@style/Widget.SpendWise.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expense"
+                android:text="@string/expense"
                 android:checkable="true"
                 app:chipIcon="@drawable/ic_trending_down"
                 app:chipIconTint="@color/expense_red" />
@@ -169,7 +169,7 @@
                 style="@style/Widget.SpendWise.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This Month"
+                android:text="@string/this_month"
                 android:checkable="true" />
 
             <com.google.android.material.chip.Chip
@@ -177,7 +177,7 @@
                 style="@style/Widget.SpendWise.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last Month"
+                android:text="@string/last_month"
                 android:checkable="true" />
 
         </com.google.android.material.chip.ChipGroup>
@@ -206,7 +206,7 @@
                 android:id="@+id/summaryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Summary"
+                android:text="@string/summary"
                 android:textSize="@dimen/text_size_md"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnPrimaryContainer"
@@ -217,7 +217,7 @@
                 android:id="@+id/totalTransactionsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total: 47 transactions"
+                android:text="@string/total_47_transactions"
                 android:textSize="@dimen/text_size_sm"
                 android:textColor="?attr/colorOnPrimaryContainer"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -244,7 +244,7 @@
                         android:id="@+id/totalIncomeAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="₹25,000"
+                        android:text="@string/_25_000"
                         android:textSize="@dimen/text_size_md"
                         android:textStyle="bold"
                         android:textColor="@color/income_green" />
@@ -252,7 +252,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Income"
+                        android:text="@string/income"
                         android:textSize="@dimen/text_size_xs"
                         android:textColor="?attr/colorOnPrimaryContainer" />
 
@@ -269,7 +269,7 @@
                         android:id="@+id/totalExpenseAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="₹18,500"
+                        android:text="@string/_18_500"
                         android:textSize="@dimen/text_size_md"
                         android:textStyle="bold"
                         android:textColor="@color/expense_red" />
@@ -277,7 +277,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expense"
+                        android:text="@string/expense"
                         android:textSize="@dimen/text_size_xs"
                         android:textColor="?attr/colorOnPrimaryContainer" />
 
@@ -326,7 +326,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No transactions found"
+            android:text="@string/no_transactions_found"
             android:textSize="@dimen/text_size_lg"
             android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginTop="@dimen/spacing_md" />
@@ -334,7 +334,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Try adjusting your search or filters"
+            android:text="@string/try_adjusting_your_search_or_filters"
             android:textSize="@dimen/text_size_sm"
             android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginTop="@dimen/spacing_xs" />
